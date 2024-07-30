@@ -1,0 +1,62 @@
+<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>Employees</h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <a href="/employees/add" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New Employees</span></a>
+                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</tH>
+                        <th>Id Perfil</th>
+                        <th>Editar</th> 
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% arrEmpleados.forEach((empleado) => { %>
+                        <tr>
+                            <td><%= empleado.id %></td>
+                            <td><%= empleado.usuario %></td>
+                            <td><%= empleado.nombre %></td>
+                            <td><%= empleado.apellido %></td>
+                            <td><%= empleado.id_perfil %></td>
+                            <td>
+                                <% if (empleado.perfil && empleado.perfil.length > 0) { %>
+                                    <%= empleado.perfil.map(e => e.texto).join(', ') %> <!-- AJUSTAR -->
+                                <% } %>
+                            </td>                            
+                            <td><button type="button" class="btn btn-primary btn-sm" onclick="location.href='/employees/edit/<%= empleado.id %>'">Editar</button></td>
+                            <td><button type="button" class="btn btn-danger btn-sm" onclick="location.href='/delete/<%= empleado.id %>'">Eliminar</button></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+                
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b></div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
